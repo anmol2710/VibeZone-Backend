@@ -24,8 +24,9 @@
     "typescript": "^5.7.3"
   },
   "scripts": {
-    "start": "ts-node ./src/server",
-    "build": "tsc -b",
-    "dev": "nodemon --exec ts-node ./src/server"
+    "start": "node dist/server.js",         
+    "build": "tsc",                         
+    "dev": "nodemon --exec ts-node src/server.ts",
+    "vercel-build": "yarn build"             
   }
 }
