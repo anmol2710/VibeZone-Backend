@@ -56,3 +56,23 @@ export const getFeaturedProducts = async (req: Request, res: Response): Promise<
     }
 
 }
+
+export const searchProducts = async (req: Request, res: Response): Promise<void> => {
+    const { productName } = req.params;
+
+    try {
+        const products = await Product.find({
+            name: {
+                "$regex": productName,
+                "$options": 'i'
+            }
+        })
+
+        console.log(products)
+        res.status(200).json({ products, status: true });
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: "Internal server error", status: false });
+    }
+}
